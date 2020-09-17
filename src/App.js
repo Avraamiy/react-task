@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {TableState} from './context/Table/TableState'
+import {MainPage} from './pages/Main'
+import {Navbar} from "./components/Navbar";
+import {BrowserRouter, Switch, Route} from "react-router-dom"
+import {TableSelector} from "./components/TableSelctor";
+import {About} from "./pages/About";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+
+        <TableState>
+            <BrowserRouter>
+                <Navbar/>
+                <div className="container pt-4">
+                    <Switch>
+                        <Route path={'/'} exact component={TableSelector}></Route>
+                        <Route path={'/table'} exact component={MainPage}></Route>
+                        <Route path={'/about'} exact component={About}></Route>
+                    </Switch>
+                </div>
+            </BrowserRouter>
+        </TableState>
+    );
 }
 
 export default App;
